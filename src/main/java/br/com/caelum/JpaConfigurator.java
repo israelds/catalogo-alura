@@ -1,19 +1,16 @@
 package br.com.caelum;
 
-import java.util.Properties;
-
-import javax.persistence.EntityManagerFactory;
-import javax.sql.DataSource;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+
+import javax.persistence.EntityManagerFactory;
+import javax.sql.DataSource;
+import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
@@ -21,12 +18,19 @@ public class JpaConfigurator {
 
 	@Bean
 	public DataSource getDataSource() {
+		String url = System.getenv("url");
+		String password = System.getenv("senha");
+		String user = System.getenv("usuario");
+
+		if ( url == null ) url = "localhost";
+		if ( user == null ) user = "root";
+
 	    DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
 	    dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-	    dataSource.setUrl("jdbc:mysql://localhost/projeto_jpa");
-	    dataSource.setUsername("root");
-	    dataSource.setPassword("");
+	    dataSource.setUrl("jdbc:mysql://" + url + "/projeto_jpa");
+	    dataSource.setUsername(user);
+	    dataSource.setPassword(password == null ? "" : password);
 
 	    return dataSource;
 	}
@@ -59,5 +63,4 @@ public class JpaConfigurator {
 		return transactionManager;
 	}
 	
-
 }

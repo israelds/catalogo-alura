@@ -5,7 +5,7 @@
 	<artifactId>projeto-jpa</artifactId>
 	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
-	<name>Projeto JPA</name>
+	<name>Alura AWS</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<spring.version>4.1.6.RELEASE</spring.version>
@@ -94,7 +94,7 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>projeto-jpa-2</finalName>
+		<finalName>alura-aws</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
