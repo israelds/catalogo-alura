@@ -6,5 +6,5 @@ hooks:
   ApplicationStart:
   - location: /scripts/reinicia-tomcat.sh
 files:
-  - source: target/loja
+  - source: target/alura-aws
     destination: /var/lib/tomcat8/webapps/loja
